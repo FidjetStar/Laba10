@@ -4,6 +4,7 @@
 class LinkedList;
 void printMultiplesOfThree(const LinkedList& list);
 void Listwork22(const LinkedList& list, int m );
+void Listwork60(const LinkedList& list, int m);
 
 class Node {
 private:
@@ -15,6 +16,7 @@ public:
     friend class LinkedList;
     friend void printMultiplesOfThree(const LinkedList& list);
     friend void Listwork22(const LinkedList& list, int m);
+    friend void Listwork60(const LinkedList& list, int m);
 };
 
 class LinkedList {
@@ -96,9 +98,11 @@ public:
     }
     friend void printMultiplesOfThree(const LinkedList& list);
     friend void Listwork22(const LinkedList& list, int m);
+    friend void Listwork60(const LinkedList& list, int m);
 };
 
 
 void inputfromkeyboard(LinkedList& list);
 void AddDelFind(LinkedList& list);
 void inputfromRandom(LinkedList& list);
+void inputfromFile(LinkedList& list, const char* filename);
