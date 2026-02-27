@@ -2,7 +2,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
-
+#include <fstream>
 
 void printMultiplesOfThree(const LinkedList& list) {
     Node* current = list.head;
@@ -15,6 +15,61 @@ void printMultiplesOfThree(const LinkedList& list) {
     std::cout << std::endl;
     std::cout << "Задание завершено" << std::endl;
 
+}
+
+void Listwork60(const LinkedList& list, int m) {
+    if (list.head == nullptr) {                     
+        LinkedList newlist;                         
+        newlist.pushBack(m);                        
+        std::cout << "Исходный список пуст. Создан новый список с элементом " << m << std::endl;               // FIX
+        newlist.print();                            
+        return;                                     
+    }
+
+    Node* current = list.head;
+    Node* lastcurrent = list.head;
+
+    while (current->next != nullptr) {              
+        if (current->value > current->next->value) {
+            std::cout << "Список не упорядочен по возрастанию. "
+                      << "Задание не может быть выполнено." << std::endl;
+            return;
+        }
+        current = current->next;                   
+    }
+
+    std::cout << "Список упорядочен по возрастанию." << std::endl;
+
+    LinkedList newlist = list; 
+
+    Node* newcurrent = newlist.head;
+    Node* prev = nullptr;                     
+
+    while (newcurrent != nullptr && newcurrent->value < m) { 
+        prev = newcurrent;                          
+        newcurrent = newcurrent->next;              
+    }
+
+    Node* newNode = new Node(m);
+
+    if (prev == nullptr) {                          
+        newNode->next = newlist.head;               
+        newlist.head = newNode;                    
+        if (newlist.tail == nullptr)                
+            newlist.tail = newNode;                 
+    }
+    else {
+        newNode->next = newcurrent;                
+        prev->next = newNode;                       
+
+        if (newcurrent == nullptr)                 
+            newlist.tail = newNode;                 
+    }
+
+    std::cout << "Значение " << m << " вставлено в список." << std::endl;
+    std::cout << "Новый список: ";
+    newlist.print();
+    std::cout << newlist.head << " адрес головы нового списка" << std::endl; // вывод адреса головы нового списка
 }
 
 void Listwork22(const LinkedList& list, int m) {
@@ -47,6 +102,22 @@ void Listwork22(const LinkedList& list, int m) {
     }
     std::cout << "Задание завершено. Значение " << m << " вставлено после каждого второго элемента." << std::endl;
 }
+
+
+void inputfromFile(LinkedList& list, const char* filename) {
+    std::ifstream file(filename);
+    if (!file.is_open()) {
+        std::cout << "Ошибка открытия файла\n";
+        return;
+    }
+    int val;
+    while (file >> val) {
+        list.pushBack(val);
+    }
+    file.close();
+}
+
+
 
 void inputfromRandom(LinkedList& list) {
     srand(time(nullptr));
@@ -100,7 +171,7 @@ void AddDelFind(LinkedList& list) {
                 int val; 
                 std::cout << "Введите значение для поиска: "; 
                 std::cin >> val;
-                Node* node = list.find(val);
+                Node* node = list.find(val); // запишет указатель на найденный узел или nullptr
                 if (node) std::cout << "Элемент найден(первое вхождение): " << node << "\n";
                 else std::cout << "Не найдено\n";
                 break;
