@@ -22,6 +22,8 @@ int main() {
         cout << "1. ListWork13 " << endl;
         cout << "2. ListWork22" << endl;
         cout << "3. ListWork60" << endl;
+        cout << "4. Dynamic4" << endl;
+        cout << "5. Dynamic26" << endl;
         cout << "0. Выход" << endl;
         cout << "Выберите: ";
         cin >> choice;
@@ -31,7 +33,7 @@ int main() {
             LinkedList list;
             int choice1;
             do {
-                cout << "\n=== Выберите Способ заполнения ===" << endl;
+                cout << "\n=== Выберите Способ заполнения  списка===" << endl;
                 cout << "1. С клавиатуры" << endl;
                 cout << "2. Рандомно" << endl;
                 cout << "3. С файла" << endl;
@@ -74,7 +76,7 @@ int main() {
             LinkedList list1;
             int choice1;
             do {
-                cout << "\n=== Выберите Способ заполнения ===" << endl;
+                cout << "\n=== Выберите Способ заполнения списка ===" << endl;
                 cout << "1. С клавиатуры" << endl;
                 cout << "2. Рандомно" << endl;
                 cout << "3. С файла" << endl;
@@ -121,7 +123,7 @@ int main() {
             LinkedList list2;
             int choice2;
             do {
-                cout << "\n=== Выберите Способ заполнения ===" << endl;
+                cout << "\n=== Выберите Способ заполнения списка ===" << endl;
                 cout << "1. С клавиатуры" << endl;
                 cout << "2. Рандомно" << endl;
                 cout << "3. С файла" << endl;
@@ -163,14 +165,95 @@ int main() {
             while (choice2 != 0);
             break;
         }
-        case 0:
-            cout << "Программа завершена\n";
+        case 4: {
+            cout << "\n=== Задание Dynamic4 ===" << endl;
+            LinkedListStack stack;
+            int choice2;
+            do {
+                cout << "\n=== Выберите Способ заполнения стека ===" << endl;
+                cout << "1. С клавиатуры" << endl;
+                cout << "2. Рандомно" << endl;
+                cout << "3. С файла" << endl;
+                cout << "4. Действия со стеком" << endl;
+                cout << "5. Решение задания" << endl;
+                cout << "0. Назад" << endl;
+                cout << "Выберите: ";
+                cin >> choice2;
+                switch (choice2) {
+                case 1:
+                    inputfromkeyboardstack(stack);
+                    break;
+                case 2:
+                    inputfromRandomStack(stack);
+                    break;
+                case 3:
+                    char filename[100];
+                    cout << "Введите имя файла из которого хотите считать данные: ";
+                    cin >> filename;
+                    inputfromFileStack(stack, filename);
+                    break;
+                case 4:
+                    AddDelShowStack(stack);
+                    break;
+                case 5: {
+                    Dynamic4(stack);
+                    break; 
+                }
+                case 0:
+                    cout << "Возврат\n";
+                    break;
+                default:
+                    cout << "Неверный ввод\n";
+                }
+            } 
+            while (choice2 != 0);
             break;
-        default:
-            cout << "Неверный ввод\n";
+        }
+        case 5: {
+            cout << "\n=== Задание Queue ===" << endl;
+            Queue queue;
+            int choice2;
+            do {
+                cout << "\n=== Выберите Способ заполнения очереди ===" << endl;
+                cout << "1. С клавиатуры" << endl;
+                cout << "2. Рандомно" << endl;
+                cout << "3. С файла" << endl;
+                cout << "4. Действия со стеком" << endl;
+                cout << "5. Решение задания" << endl;
+                cout << "0. Назад" << endl;
+                cout << "Выберите: ";
+                cin >> choice2;
+                switch (choice2) {
+                case 1:
+                    inputfromkeyboardqueue(queue);
+                    break;
+                case 2:
+                    inputfromRandomQueue(queue);
+                    break;
+                case 3:
+                    char filename[100];
+                    cout << "Введите имя файла из которого хотите считать данные: ";
+                    cin >> filename;
+                    inputfromFileQueue(queue, filename);
+                    break;
+                case 4:
+                    AddDelShowQueue(queue);
+                    break;
+                case 5: {
+                    break; 
+                }
+                case 0:
+                    cout << "Возврат\n";
+                    break;
+                default:
+                    cout << "Неверный ввод\n";
+                }
+            } 
+            while (choice2 != 0);
+            break;
         }
     } 
+    }
     while (choice != 0);
     return 0;
 }
-
